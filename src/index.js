@@ -9,7 +9,7 @@ import Header from './components/layout/Header';
 import Footer from './components/layout/Footer';
 import Page from './components/layout/Page';
 // pages
-import Dashboard from './components/pages/Dashboard';
+import Dashboard from './components/pages/dashboard/Dashboard';
 
 render(
 	<MuiThemeProvider>
