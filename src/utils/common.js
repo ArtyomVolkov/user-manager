@@ -44,3 +44,7 @@ export function checkImageURL(url, timeout) {
 		img.src = url;
 	});
 }
+
+export function cloneObject(obj) {
+	return JSON.parse(JSON.stringify(obj));
+}

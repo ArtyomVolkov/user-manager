@@ -22,11 +22,16 @@ module.exports = {
 		loaders: [
 			{
 				test: /\.js$/,
-				exclude: /node_modules/,
+				exclude: [/node_modules/, /graphql/],
 				loader: 'babel-loader',
 				query: {
           presets: ['react', 'es2015'],
-					plugins: ['react-html-attrs', 'transform-class-properties', 'transform-decorators-legacy']
+					plugins: [
+						'react-html-attrs',
+						'transform-class-properties',
+						'transform-decorators-legacy',
+						'transform-object-rest-spread'
+					]
 				}
 			},
 			{

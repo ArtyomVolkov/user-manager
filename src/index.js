@@ -10,6 +10,7 @@ import Footer from './components/layout/Footer';
 import Page from './components/layout/Page';
 // pages
 import Dashboard from './components/pages/dashboard/Dashboard';
+import GraphQlAPI from './components/pages/api/GraphQlAPI';
 
 render(
 	<MuiThemeProvider>
@@ -18,6 +19,7 @@ render(
 				<Route path="/" component={Page}>
 					<IndexRedirect to="/dashboard" />
 					<Route path="dashboard" components={{content: Dashboard, header: Header, footer: Footer}} />
+					<Route path="api" components={{content: GraphQlAPI, header: Header, footer: Footer}} />
 				</Route>
 				<Redirect path="*" to="dashboard"/>
 			</Router>

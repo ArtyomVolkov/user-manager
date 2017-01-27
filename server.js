@@ -2,6 +2,8 @@ const express = require('express');
 const cors = require('cors');
 const bodyParser = require('body-parser');
 const router = express.Router();
+const GraphHTTP = require('express-graphql');
+const Schema = require('./src/graphql/schema');
 const PG = require('pg');
 const DB_CONFIG = {
 	user: 'tm', // user-role-name
@@ -128,6 +130,12 @@ router.put('/api/v1/users/update/:id', (req, res) => {
 Server.use(cors());
 Server.use(bodyParser.json());
 Server.use('/', router);
+// GraphQL
+Server.use('/api/v1/graphql', GraphHTTP({
+	schema: Schema,
+	pretty: true,
+	graphiql: true
+}));
 Server.listen(3001, function () {
 	console.log('****** Server is listening on 3001 port ******');
 });
