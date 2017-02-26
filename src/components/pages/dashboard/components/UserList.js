@@ -135,29 +135,31 @@ class UserList extends Component {
 		});
 	};
 
-	onRemoveUser(id) {
+	onRemoveUser(id, index) {
 		if (!this.activeUser) {
 			return;
 		}
 		this.activeUser.id = id;
+		this.activeUser.index= index;
 		this.openDialog('removeUserDialog');
 	}
 
 	removeUser =()=> {
 		const {props, activeUser} = this;
-		props.actions.deleteUser(activeUser.id).
-		then((response) => {
-			props.users.splice(activeUser.index, 1);
-			this.closeDialog('removeUserDialog');
-		}).
-		catch((error) => {
-			this.closeDialog('removeUserDialog');
-			props.message.setMessage({
-				type: 'error',
-				text: error.message,
-				action: 'close',
-				duration: 3000
-			});
+
+		props.actions.deleteUser(activeUser.id)
+      .then(() => {
+        props.users.splice(activeUser.index, 1);
+        this.closeDialog('removeUserDialog');
+      })
+      .catch((error) => {
+        this.closeDialog('removeUserDialog');
+        props.message.setMessage({
+          type: 'error',
+          text: error.message,
+          action: 'close',
+          duration: 3000
+        });
 		});
 	};
 	
@@ -203,7 +205,7 @@ class UserList extends Component {
 													<span style={STYLES.label}>edit</span>
 												</MenuItem>
 												<Divider />
-												<MenuItem onClick={this.onRemoveUser.bind(this, user.id)}>
+												<MenuItem onClick={this.onRemoveUser.bind(this, user.id, index)}>
 													<ActionDeleteForever style={STYLES.icon} />
 													<span style={STYLES.label}>remove</span>
 												</MenuItem>
